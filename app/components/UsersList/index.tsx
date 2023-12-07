@@ -5,12 +5,14 @@ import { UserType } from "@/app/types";
 
 const UserList = () => {
     const [userList, setUserList] = useState<UserType[]>([])
+    const [loading, setLoading] = useState<Boolean>(true);
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/users')
             .then((res) => res.json())
             .then((data) => {
                 setUserList(data)
+                setLoading(false);
             })
     }, [])
 
@@ -18,9 +20,8 @@ const UserList = () => {
     return (
         <div>
             UsersList
-            {
-                userList.map(user=><User name={user.name} key={`key-${user.id}`}/>)
-            }
+            {loading && <h1>user list loading</h1>}
+            {!loading && userList.map(user => <User name={user.name} key={`key-${user.id}`} />)}
         </div>
     )
 }
