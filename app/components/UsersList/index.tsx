@@ -20,8 +20,12 @@ const UserList = () => {
     return (
         <div>
             UsersList
-            {loading && <h1>user list loading</h1>}
-            {!loading && userList.map(user => <User name={user.name} key={`key-${user.id}`} />)}
+            {/* {loading && <h1>user list loading</h1>} */}
+            {userList.map(user => <User name={user.name} 
+                                                    key={`key-${user.id}`} 
+                                                    username={user.username}
+                                                    email={user.email}
+                                                    address={user.address} />)}
         </div>
     )
 }
